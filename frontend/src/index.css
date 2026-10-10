@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #030712;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0f1e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #243356;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00d4ff;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-navy-900 border border-navy-600/50 rounded-xl shadow-card;
+  }
+  
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-cyan-accent/30 hover:shadow-glow-cyan cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm
+           bg-electric-500 text-navy-950 hover:bg-electric-400
+           transition-all duration-150 active:scale-95 shadow-glow-green;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm
+           bg-navy-700 text-slate-200 border border-navy-600/70 hover:bg-navy-600
+           hover:border-cyan-accent/40 transition-all duration-150 active:scale-95;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm
+           bg-rose-500/20 text-rose-400 border border-rose-500/30 hover:bg-rose-500/30
+           transition-all duration-150 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm
+           text-slate-400 hover:text-slate-200 hover:bg-navy-700
+           transition-all duration-150;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 rounded-lg bg-navy-800 border border-navy-600/60
+           text-slate-200 placeholder-slate-500 text-sm
+           focus:outline-none focus:border-cyan-accent/60 focus:ring-1 focus:ring-cyan-accent/20
+           transition-all duration-150;
+  }
+
+  .select-field {
+    @apply input-field appearance-none cursor-pointer;
+  }
+
+  .badge-normal {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium
+           bg-electric-500/10 text-electric-500 border border-electric-500/20;
+  }
+
+  .badge-monitor {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium
+           bg-amber-500/10 text-amber-400 border border-amber-500/20;
+  }
+
+  .badge-anomaly {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium
+           bg-rose-500/10 text-rose-400 border border-rose-500/20;
+  }
+
+  .badge-high {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium
+           bg-rose-500/10 text-rose-400 border border-rose-500/20;
+  }
+
+  .badge-medium {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium
+           bg-amber-500/10 text-amber-400 border border-amber-500/20;
+  }
+
+  .badge-low {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium
+           bg-slate-500/10 text-slate-400 border border-slate-500/20;
+  }
+
+  .sim-banner {
+    @apply flex items-center gap-2 px-3 py-1.5 rounded-lg
+           bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-medium;
+  }
+
+  .stat-label {
+    @apply text-xs font-medium text-slate-400 uppercase tracking-wider;
+  }
+
+  .stat-value {
+    @apply text-2xl font-bold text-slate-100;
+  }
+
+  .table-header {
+    @apply text-xs font-semibold text-slate-400 uppercase tracking-wider px-4 py-3
+           border-b border-navy-700/60 bg-navy-850/60;
+  }
+
+  .table-row {
+    @apply border-b border-navy-700/30 hover:bg-navy-800/40 transition-colors duration-100;
+  }
+
+  .table-cell {
+    @apply px-4 py-3 text-sm text-slate-300;
+  }
+}
+
+/* Recharts overrides */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #0d1528 !important;
+  border: 1px solid rgba(0, 212, 255, 0.2) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4) !important;
+}
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(36, 51, 86, 0.5) !important;
+}
+
+/* Toast animations */
+@keyframes toastIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes toastOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+.toast-enter { animation: toastIn 0.25s ease-out; }
+.toast-exit { animation: toastOut 0.2s ease-in forwards; }
